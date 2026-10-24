@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Receptio per Clinic Medical Beauty</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: fascia hero blush con titolo editoriale, nav a sottolineatura, poi 4 viste. Look da brand beauty, non da software. */
+:root{
+  --bg:#FBF6F4; --band:#F3E3DE; --surface:#FFFFFF; --sunk:#F5ECE9; --line:#E6D5D2;
+  --ink:#23161A; --muted:#6B4F55; --accent:#8E2A3B; --accent-soft:#F6E3E4;
+  --frame:#23161A; --wa-bg:#EFE5DC; --wa-out:#DDF2D2; --wa-in:#FFFFFF; --wa-head:#23161A; --wa-head-ink:#F3E3DE;
+  --ok:#2F6B4F; --ok-soft:#E1EFE6; --warn:#94590C; --warn-soft:#F8EBD6; --crit:#A12C3A; --crit-soft:#F7E0E2;
+  --f-display:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --f-body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#170E11; --band:#22151A; --surface:#211619; --sunk:#2A1C21; --line:#3A2A30;
+  --ink:#F3E3DE; --muted:#B89FA4; --accent:#E59BA7; --accent-soft:#3A2028;
+  --frame:#0C0708; --wa-bg:#1C1316; --wa-out:#24453A; --wa-in:#2A1F23; --wa-head:#0C0708; --wa-head-ink:#F3E3DE;
+  --ok:#86CBA6; --ok-soft:#1C3328; --warn:#E5AC5C; --warn-soft:#3A2A14; --crit:#F09AA4; --crit-soft:#3E1D23; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#170E11; --band:#22151A; --surface:#211619; --sunk:#2A1C21; --line:#3A2A30;
+  --ink:#F3E3DE; --muted:#B89FA4; --accent:#E59BA7; --accent-soft:#3A2028;
+  --frame:#0C0708; --wa-bg:#1C1316; --wa-out:#24453A; --wa-in:#2A1F23; --wa-head:#0C0708; --wa-head-ink:#F3E3DE;
+  --ok:#86CBA6; --ok-soft:#1C3328; --warn:#E5AC5C; --warn-soft:#3A2A14; --crit:#F09AA4; --crit-soft:#3E1D23; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.55}
+.hero{background:var(--band)}
+.hero-in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:36px 56px}
+.topline{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.wordmark{font-family:var(--f-display);font-weight:600;font-size:28px;letter-spacing:.02em}
+.eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,84px);line-height:1;letter-spacing:-.02em;margin:40px 0 16px;max-width:15ch;text-wrap:balance}
+.hero h1 em{color:var(--accent)}
+.hero p.sub{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:56ch;margin:0 0 36px}
+nav.tabs{display:flex;gap:28px;overflow-x:auto;border-top:1px solid var(--line)}
+nav.tabs button{flex:none;font:500 15px var(--f-body);border:0;background:transparent;color:var(--muted);padding:16px 0 14px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+button:focus-visible,.chip-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.08;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+h2 em{color:var(--accent)}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);margin:0 0 12px;font-weight:600}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 24px;font-size:16.5px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0}
+
+/* Paziente */
+.pat{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:40px;align-items:start}
+@media (max-width:860px){.pat{grid-template-columns:1fr}}
+.scen{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip-btn{font:500 14px var(--f-body);border:1px solid var(--line);background:transparent;color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
+.chip-btn[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.stage{position:relative;max-width:380px;margin:0 auto}
+.phone{border:12px solid var(--frame);border-radius:52px;overflow:hidden;background:var(--wa-bg);width:100%;box-shadow:0 36px 70px rgba(70,20,35,.18)}
+.wa-head{background:var(--wa-head);color:var(--wa-head-ink);display:flex;align-items:center;gap:12px;padding:30px 16px 14px}
+.wa-av{width:38px;height:38px;border-radius:50%;background:var(--wa-head-ink);color:var(--wa-head);display:grid;place-items:center;font-family:var(--f-display);font-weight:600;font-size:19px}
+.wa-name{font-weight:600;font-size:15.5px;line-height:1.2}
+.wa-st{font-size:12.5px;opacity:.75}
+.chat{height:480px;overflow-y:auto;padding:16px 12px;display:flex;flex-direction:column;gap:7px}
+.msg{max-width:84%;padding:8px 11px 5px;border-radius:14px;font-size:14.5px;line-height:1.4;white-space:pre-line;animation:pop .22s ease-out;color:var(--ink)}
+.msg.in{align-self:flex-start;background:var(--wa-in);border-top-left-radius:4px}
+.msg.out{align-self:flex-end;background:var(--wa-out);border-top-right-radius:4px}
+.msg time{display:block;text-align:right;font-size:10.5px;color:var(--muted);margin-top:2px}
+.msg .tpl{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;font-weight:600}
+.qr{align-self:flex-end;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:90%}
+.qr span{background:var(--wa-in);color:var(--accent);font-weight:600;font-size:13px;padding:6px 13px;border-radius:999px;border:1px solid var(--line)}
+.typing{align-self:flex-start;background:var(--wa-in);padding:10px 12px;border-radius:14px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.day{align-self:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--surface);color:var(--muted);padding:3px 10px;border-radius:6px;margin:4px 0}
+.ticket{position:absolute;left:-28px;bottom:96px;width:210px;background:var(--surface);border-radius:16px;padding:14px 16px;box-shadow:0 20px 40px rgba(70,20,35,.16);transform:rotate(-3deg);display:flex;flex-direction:column;gap:2px;opacity:0;transition:opacity .4s,transform .4s}
+.ticket.on{opacity:1;transform:rotate(-3deg) translateY(-4px)}
+.ticket .tk-l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.ticket .tk-t{font-family:var(--f-display);font-size:30px;line-height:1.05}
+.ticket .tk-w{font-size:14px}
+.ticket .tk-s{font-size:12px;color:var(--muted)}
+@media (max-width:460px){.ticket{left:-6px;width:180px}}
+@keyframes pop{from{transform:translateY(4px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.msg,.typing i{animation:none}.ticket{transition:none}}
+.ctrl{display:flex;gap:10px;margin-top:20px;justify-content:center}
+.btn{font:600 14.5px var(--f-body);border:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 20px;border-radius:999px;cursor:pointer;min-height:44px}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.side{display:flex;flex-direction:column;gap:20px;min-width:0}
+.log{font-size:13.5px}
+.log ul{margin:0;padding:0}
+.log li{list-style:none;display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line);animation:pop .25s ease-out}
+.log .k{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;padding-top:2px}
+.log .v{color:var(--ink);overflow-wrap:anywhere;font-family:var(--f-mono);font-size:12.5px}
+.log .v small{display:block;color:var(--muted);font-family:var(--f-body);font-size:13px}
+.empty{color:var(--muted);font-size:14px;padding:10px 0;font-style:italic}
+.guard{display:grid;gap:14px}
+.guard div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;font-size:14.5px;align-items:baseline}
+.guard b{font-family:var(--f-display);font-style:italic;font-weight:400;font-size:18px;color:var(--ink)}
+
+/* Console */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;margin-bottom:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpi{padding:18px 18px 18px 0;border-right:1px solid var(--line);margin-right:18px}
+.kpi:last-child{border-right:0}
+.kpi .l{font-size:13px;color:var(--muted)}
+.kpi .n{font-family:var(--f-display);font-size:44px;font-weight:400;font-variant-numeric:lining-nums tabular-nums;line-height:1.05;margin-top:6px}
+.kpi .d{font-size:12.5px;color:var(--ok);margin-top:2px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.inbox{display:flex;flex-direction:column}
+.conv{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.conv:last-child{border-bottom:0}
+.av{width:40px;height:40px;border-radius:50%;background:var(--band);display:grid;place-items:center;font-family:var(--f-display);font-size:15px;color:var(--ink)}
+.conv .nm{font-weight:600;font-size:14.5px}
+.conv .pv{font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.p-ai{background:var(--accent-soft);color:var(--accent)}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-crit{background:var(--crit-soft);color:var(--crit)}
+.agenda{display:flex;flex-direction:column;gap:0}
+.slot{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.slot:last-child{border-bottom:0}
+.slot .t{font-family:var(--f-display);font-size:20px;font-variant-numeric:lining-nums tabular-nums}
+.slot .w{font-size:14.5px;min-width:0}
+.slot .w small{display:block;color:var(--muted);font-size:12.5px}
+.src{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.slot.ai .src{color:var(--accent)}
+.row3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px}
+.kb li{list-style:none;display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.kb li:last-child{border-bottom:0}
+.kb ul{margin:0;padding:0}
+.kb .pr{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.toggle:last-child{border-bottom:0}
+.sw{width:36px;height:22px;border-radius:999px;background:var(--accent);position:relative;flex:none}
+.sw::after{content:"";position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:var(--surface)}
+.sw.off{background:var(--line)}.sw.off::after{right:auto;left:3px}
+.bars{display:flex;align-items:flex-end;gap:8px;height:130px;padding-top:6px;border-bottom:1px solid var(--line)}
+.bars div{flex:1;background:var(--accent-soft);border-radius:6px 6px 0 0}
+.bars div.cur{background:var(--accent)}
+.bars-l{display:flex;gap:8px;font-size:11px;color:var(--muted);margin-top:6px}
+.bars-l span{flex:1;text-align:center}
+
+/* Brand */
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+th{text-align:left;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px;border-bottom:1px solid var(--line)}
+td{padding:12px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--f-display);font-size:17px}
+td.num,th.num{text-align:right}
+.meter{height:5px;border-radius:3px;background:var(--sunk);overflow:hidden;width:90px;display:inline-block;vertical-align:middle;margin-right:8px}
+.meter i{display:block;height:100%;background:var(--accent)}
+
+/* Flusso */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-bottom:32px;border-top:1px solid var(--line)}
+.step{padding:20px 20px 20px 0;border-bottom:1px solid var(--line)}
+.step .no{font-family:var(--f-display);font-style:italic;font-size:34px;color:var(--accent);line-height:1}
+.step b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;margin:8px 0 4px}
+.step p{margin:0;font-size:14.5px;color:var(--muted)}
+.arch{font-family:var(--f-mono);font-size:12.5px;background:var(--sunk);border-radius:16px;padding:20px;overflow-x:auto;white-space:pre;line-height:1.6;color:var(--ink)}
+.vert{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 28px}
+.vert div{padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+.vert b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;color:var(--ink);margin-bottom:2px}
+section[hidden]{display:none}
+.foot{margin-top:40px;font-size:13px;color:var(--muted);font-style:italic}
+.sect-gap{margin-top:40px}
+
+/* --- viste collegate --- */
+.topline .actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn-s{font:600 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;min-height:36px}
+.btn-s.ghost{background:transparent}
+.btn-s:hover{border-color:var(--accent)}
+nav.tabs button{position:relative}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-left:6px;vertical-align:middle}
+.guide{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px 20px;margin-bottom:28px}
+.guide-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.guide-head b{font-family:var(--f-display);font-weight:400;font-size:22px}
+.guide-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.gstep{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:2px solid var(--line)}
+.gstep.done{border-top-color:var(--accent)}
+.gstep .gn{font-family:var(--f-display);font-style:italic;font-size:24px;color:var(--accent);line-height:1}
+.gstep p{margin:0;font-size:14px;color:var(--muted);flex:1}
+.gstep button{align-self:flex-start}
+.qr button{font:600 13px var(--f-body);background:var(--wa-in);color:var(--accent);padding:7px 14px;border-radius:999px;border:1px solid var(--accent);cursor:pointer;min-height:36px}
+.qr button:hover{background:var(--accent);color:var(--bg)}
+.hint{text-align:center;font-size:13px;color:var(--accent);margin-top:10px;min-height:20px;font-weight:500}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.filters select{font:500 14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 14px;min-height:40px}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.days button{font:500 13px var(--f-body);border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;min-height:36px}
+.days button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ag{display:flex;flex-direction:column}
+.ag-row{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.ag-row:last-child{border-bottom:0}
+.ag-row .t{font-family:var(--f-display);font-size:20px;font-variant-numeric:lining-nums tabular-nums}
+.ag-row .w{min-width:0;font-size:14.5px}
+.ag-row .w small{display:block;color:var(--muted);font-size:12.5px}
+.ag-row.new{background:var(--accent-soft);margin:0 -12px;padding-left:12px;padding-right:12px;border-radius:12px;border-bottom-color:transparent;animation:pop .4s ease-out}
+.badge-new{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-left:6px}
+.ag-empty{color:var(--muted);font-style:italic;padding:12px 0}
+.conv .act{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.conv .sd{font-size:12px;color:var(--muted)}
+.p-n{background:var(--sunk);color:var(--muted)}
+.acts li{list-style:none;display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+.acts li:last-child{border-bottom:0}
+.acts ul{margin:0;padding:0}
+.acts .tm{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.acts small{display:block;color:var(--muted);font-size:12.5px}
+.sede-bars{display:flex;flex-direction:column;gap:10px}
+.sb{display:grid;grid-template-columns:150px minmax(0,1fr) 44px;gap:10px;align-items:center;font-size:13.5px}
+.sb .track{height:10px;background:var(--sunk);border-radius:5px;overflow:hidden;display:flex}
+.sb .track i{display:block;height:100%;background:var(--accent)}
+.sb .track u{display:block;height:100%;background:var(--accent-soft);text-decoration:none}
+.sb .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-top:12px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+.legend span.r::before{background:var(--accent-soft)}
+@media (max-width:520px){.sb{grid-template-columns:110px minmax(0,1fr) 36px}}
+</style>
+
+<div class="hero"><div class="hero-in">
+  <div class="topline">
+    <span class="wordmark">Receptio</span>
+    <div class="actions">
+      <button class="btn-s" id="btn-guide">Guida alla demo</button>
+      <button class="btn-s ghost" id="btn-reset">Ricomincia la demo</button>
+    </div>
+  </div>
+  <span class="eyebrow" style="display:block;margin-top:18px">Proposta per Clinic Medical Beauty</span>
+  <h1 style="margin-top:14px">La reception che risponde anche <em>alle 23:47.</em></h1>
+  <p class="sub">Per le oltre 30 sedi Clinic Medical Beauty. Risponde su WhatsApp, conosce trattamenti e promo, fissa la visita nella sede più comoda e passa ai medici solo ciò che serve. Quello che fai nel telefono compare subito nella reception e nella direzione.</p>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-v="paziente" aria-selected="true">Lato paziente</button>
+    <button role="tab" data-v="reception" aria-selected="false">Reception di sede<span class="dot" data-dot="reception" hidden></span></button>
+    <button role="tab" data-v="direzione" aria-selected="false">Direzione<span class="dot" data-dot="direzione" hidden></span></button>
+    <button role="tab" data-v="flusso" aria-selected="false">Come funziona</button>
+  </nav>
+</div></div>
+<div class="wrap">
+
+  <div class="guide" id="guide">
+    <div class="guide-head"><b>Come provare la demo</b><button class="btn-s ghost" id="guide-close">Nascondi</button></div>
+    <div class="guide-steps">
+      <div class="gstep" data-g="1"><span class="gn">i</span><p>Nel telefono avvia «Promo Botox» e scegli tu sede e orario toccando le risposte.</p><button class="btn-s" data-go="1">Prova</button></div>
+      <div class="gstep" data-g="2"><span class="gn">ii</span><p>Apri la reception: l'appuntamento è già in agenda, nella sede e nel giorno che hai scelto.</p><button class="btn-s" data-go="2">Vai alla reception</button></div>
+      <div class="gstep" data-g="3"><span class="gn">iii</span><p>Avvia «Follow-up filler» e chiedi di essere richiamata: il caso arriva al medico, la reception lo prende in carico.</p><button class="btn-s" data-go="3">Prova</button></div>
+      <div class="gstep" data-g="4"><span class="gn">iv</span><p>Guarda la direzione: i numeri della rete si aggiornano con quello che hai fatto.</p><button class="btn-s" data-go="4">Vai alla direzione</button></div>
+    </div>
+  </div>
+
+  <!-- PAZIENTE -->
+  <section id="v-paziente">
+    <h2>Il paziente scrive. <em>Receptio risponde.</em></h2>
+    <p class="lede">Scegli una situazione, premi Avvia e rispondi tu toccando le opzioni nel telefono. A destra vedi cosa fa il sistema dietro le quinte.</p>
+    <div class="scen" id="scen">
+      <button class="chip-btn" data-s="book" aria-pressed="true">Promo Botox</button>
+      <button class="chip-btn" data-s="lead" aria-pressed="false">Richiesta dal sito</button>
+      <button class="chip-btn" data-s="follow" aria-pressed="false">Follow-up filler</button>
+      <button class="chip-btn" data-s="noshow" aria-pressed="false">Appuntamento mancato</button>
+    </div>
+    <div class="pat">
+      <div>
+        <div class="stage">
+          <div class="phone">
+            <div class="wa-head">
+              <div class="wa-av">C</div>
+              <div><div class="wa-name">Clinic Medical Beauty</div><div class="wa-st" id="wast">Account business</div></div>
+            </div>
+            <div class="chat" id="chat" aria-live="polite"></div>
+          </div>
+          <div class="ticket" id="ticket"><span class="tk-l" id="tk-l">Agenda</span><span class="tk-t" id="tk-t">12:00</span><span class="tk-w" id="tk-w">Botox · promo</span><span class="tk-s">prenotato da Receptio</span></div>
+        </div>
+        <div class="hint" id="hint"></div>
+        <div class="ctrl">
+          <button class="btn primary" id="play">Avvia</button>
+          <button class="btn" id="again">Ricomincia la chat</button>
+        </div>
+      </div>
+      <div class="side">
+        <div class="panel">
+          <h3>Dietro le quinte</h3>
+          <div class="log"><ul id="log"></ul></div>
+        </div>
+        <div class="panel"><div class="guard">
+          <h3>Regole sempre attive</h3>
+          <div><b>Medico</b><span>Nessuna diagnosi o indicazione clinica: idoneità, controindicazioni e risultati li valuta il medico in visita.</span></div>
+          <div><b>Prezzi</b><span>Non inventa cifre né sconti: usa solo trattamenti e promo attivi decisi dalla direzione, il resto lo definisce il medico.</span></div>
+          <div><b>Chirurgia</b><span>Per rinoplastica, mastoplastica e altri interventi fissa solo la visita con il chirurgo.</span></div>
+          <div><b>Privacy</b><span>Al primo contatto dichiara di essere un'AI e raccoglie il consenso; i dati sanitari sono trattati come categoria particolare.</span></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEPTION -->
+  <section id="v-reception" hidden>
+    <h2>La reception <em>di sede</em></h2>
+    <p class="lede">Agenda della settimana, conversazioni da prendere in carico e tutto quello che l'assistente ha fatto. Numeri e pazienti sono simulati.</p>
+    <div class="filters">
+      <label for="f-sede" class="eyebrow" style="letter-spacing:.12em">Sede</label>
+      <select id="f-sede"></select>
+      <div class="days" id="f-days"></div>
+    </div>
+    <div class="kpis" id="r-kpis"></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3 id="ag-title">Agenda</h3>
+        <div class="ag" id="ag"></div>
+      </div>
+      <div class="panel">
+        <h3>Conversazioni</h3>
+        <div class="inbox" id="inbox"></div>
+      </div>
+    </div>
+    <div class="row3">
+      <div class="panel acts"><h3>Ogni passaggio dell'assistente</h3><ul id="acts"></ul></div>
+      <div class="panel">
+        <h3>Regole dell'assistente</h3>
+        <div class="toggle"><span>Prenota direttamente in agenda</span><span class="sw"></span></div>
+        <div class="toggle"><span>Ricontatta su WhatsApp chi compila il modulo del sito</span><span class="sw"></span></div>
+        <div class="toggle"><span>Promemoria e follow-up dopo i trattamenti</span><span class="sw"></span></div>
+        <div class="toggle"><span>Chirurgia: solo visita con il chirurgo</span><span class="sw"></span></div>
+        <div class="toggle"><span>Può applicare lo sconto del sito</span><span class="sw off"></span></div>
+        <div class="toggle"><span>Tono: caldo, dà del tu</span><span class="pill p-ai">modifica</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIREZIONE -->
+  <section id="v-direzione" hidden>
+    <h2>Oltre 30 sedi, <em>una sola voce</em></h2>
+    <p class="lede">Il pilota su sette sedi tra Roma, Milano e Bergamo, in un unico sguardo. I numeri si aggiornano con quello che succede nella demo.</p>
+    <div class="kpis" id="d-kpis"></div>
+    <div class="grid2">
+      <div class="panel tbl">
+        <h3>Le sedi del pilota · settimana 26–31 ottobre</h3>
+        <table>
+          <thead><tr><th>Sede</th><th class="num">Appuntamenti</th><th class="num">Dall'assistente</th><th class="num">Quota</th><th class="num">Casi aperti</th><th>Stato</th></tr></thead>
+          <tbody id="d-table"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h3>Chi ha fissato gli appuntamenti</h3>
+        <div class="sede-bars" id="d-bars"></div>
+        <div class="legend"><span>Assistente</span><span class="r">Reception</span></div>
+      </div>
+    </div>
+    <div class="row3">
+      <div class="panel kb"><h3>Deciso dalla direzione</h3><ul>
+        <li><span>Promo nazionali e scadenze</span><span class="pill p-ai">brand</span></li>
+        <li><span>Trattamenti e schede informative</span><span class="pill p-ai">brand</span></li>
+        <li><span>Tono di voce e nome dell'assistente</span><span class="pill p-ai">brand</span></li>
+        <li><span>Messaggi automatici approvati da Meta</span><span class="pill p-ai">brand</span></li></ul></div>
+      <div class="panel kb"><h3>Gestito dalla sede</h3><ul>
+        <li><span>Agenda, studi e medici presenti</span><span class="pill p-ok">sede</span></li>
+        <li><span>Chi riceve i casi da gestire</span><span class="pill p-ok">sede</span></li>
+        <li><span>Orari di apertura e festività</span><span class="pill p-ok">sede</span></li>
+        <li><span>Lingue: Tirana anche in albanese e inglese</span><span class="pill p-warn">per sede</span></li></ul></div>
+      <div class="panel kb"><h3>Prossime aperture</h3><ul>
+        <li><span>Torino, Napoli, Firenze</span><span class="pr">pronte al via</span></li>
+        <li><span>Bari, Genova, Lugano</span><span class="pr">pronte al via</span></li>
+        <li><span>Da configurare per sede</span><span class="pr">agenda e studi</span></li>
+        <li><span>Promo, trattamenti e tono</span><span class="pr">ereditati</span></li></ul></div>
+    </div>
+  </section>
+
+    <!-- FLUSSO -->
+  <section id="v-flusso" hidden>
+    <h2>Come <em>funziona</em></h2>
+    <p class="lede">Un numero WhatsApp del brand, gestito tramite le API ufficiali di WhatsApp Business e collegato all'agenda delle sedi. Il modulo "Richiedi un appuntamento" del sito diventa una conversazione dopo pochi minuti invece che una richiamata.</p>
+    <div class="flow">
+      <div class="step"><span class="no">i</span><b>Il paziente scrive</b><p>Su WhatsApp, da Instagram o compilando il modulo del sito.</p></div>
+      <div class="step"><span class="no">ii</span><b>L'assistente capisce</b><p>Riconosce la richiesta, la sede più comoda e le promo attive.</p></div>
+      <div class="step"><span class="no">iii</span><b>Agisce sull'agenda</b><p>Legge gli slot liberi, prenota, sposta o disdice nel gestionale.</p></div>
+      <div class="step"><span class="no">iv</span><b>Segue il paziente</b><p>Promemoria, follow-up, richiami e recupero dei no-show con template approvati.</p></div>
+      <div class="step"><span class="no">v</span><b>Coinvolge i medici</b><p>Domande cliniche, chirurgia e casi delicati passano a una persona con un riassunto pronto.</p></div>
+    </div>
+        <h3>Le stesse regole su tutta la rete</h3>
+    <div class="vert">
+      <div><b>Medicina estetica</b>Botox, filler, rinofiller, carbossiterapia: prenota la visita, spiega le promo, nessuna indicazione clinica.</div>
+      <div><b>Chirurgia estetica</b>Rinoplastica, mastoplastica, blefaroplastica: raccoglie la richiesta e fissa la visita con il chirurgo.</div>
+      <div><b>Tirana e Lugano</b>Risposte nella lingua del paziente, con agenda e promo della sede.</div>
+      <div><b>Nuove sedi</b>Si aggiunge la sede, si collega l'agenda: il resto è già impostato dal brand.</div>
+    </div>
+  </section>
+
+  <p class="foot">Proposta di Receptio per Clinic Medical Beauty. Pazienti, conversazioni e numeri sono simulati; sedi e trattamenti sono ripresi dal sito clinicitalia.it al 24 ottobre 2026.</p>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const D=ms=>reduce?Math.min(ms,180):ms;
+
+  const SEDI=[
+    {k:'prati',n:'Roma Prati',a:'via Giuseppe Ferrari 28'},
+    {k:'fleming',n:'Roma Fleming',a:'via Bevagna 9'},
+    {k:'eur',n:'Roma Eur Europa',a:'viale Europa 64'},
+    {k:'sangiovanni',n:'Roma San Giovanni',a:'via Terni 42'},
+    {k:'pv',n:'Milano Porta Venezia',a:'viale Luigi Majno 35'},
+    {k:'sempione',n:'Milano Sempione',a:'via Bertini 10/12'},
+    {k:'bergamo',n:'Bergamo',a:'via Stoppani 7A'}
+  ];
+  const SEDE=Object.fromEntries(SEDI.map(s=>[s.k,s]));
+  const DAYS=[
+    {k:'26',s:'lun 26',l:'lunedì 26 ottobre'},{k:'27',s:'mar 27',l:'martedì 27 ottobre'},{k:'28',s:'mer 28',l:'mercoledì 28 ottobre'},
+    {k:'29',s:'gio 29',l:'giovedì 29 ottobre'},{k:'30',s:'ven 30',l:'venerdì 30 ottobre'},{k:'31',s:'sab 31',l:'sabato 31 ottobre'}
+  ];
+  const DAY=Object.fromEntries(DAYS.map(d=>[d.k,d]));
+  const TR=['Botox','Filler labbra','Rinofiller','Carbossiterapia','Morpheus8','Visita medicina estetica','Visita rinoplastica','Visita blefaroplastica','Controllo post trattamento'];
+  const NOMI=['Chiara Costa','Laura Neri','Sofia Greco','Valentina Riva','Elisa Fontana','Martina Gallo','Federica Rossi','Giorgia Conti','Ilaria Marchetti','Paola De Luca','Serena Villa','Alice Ferri','Beatrice Leone','Camilla Sala','Noemi Russo','Roberta Testa','Davide Moretti','Andrea Colombo'];
+  const TIMES=['09:30','10:30','11:30','14:30','15:30','16:30'];
+
+  let ST, F={sede:'all',day:'26'}, view='paziente', guideDone={};
+
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function seed(){
+    const r=rng(11), appts=[]; let id=1;
+    SEDI.forEach(s=>DAYS.forEach(d=>{
+      const n=2+Math.floor(r()*2); const used=new Set();
+      for(let i=0;i<n;i++){
+        let t; do{t=TIMES[Math.floor(r()*TIMES.length)]}while(used.has(t)); used.add(t);
+        const ai=r()<0.6;
+        appts.push({id:id++,sede:s.k,day:d.k,time:t,paz:NOMI[Math.floor(r()*NOMI.length)],tr:TR[Math.floor(r()*TR.length)],origin:ai?'ai':'rec',src:ai?'AI · WhatsApp':'reception',conf:r()<0.88});
+      }
+    }));
+    return {
+      appts,
+      convos:[
+        {paz:'Valentina Ricci',sede:'prati',preview:'Chiede la differenza tra filler labbra e rinofiller',status:'ai'},
+        {paz:'Francesca Moretti',sede:'fleming',preview:'Chiede tempi e percorso per la rinoplastica',status:'chir'},
+        {paz:'Alessia Marino',sede:'pv',preview:'Vuole lo sconto del sito anche via WhatsApp',status:'warn'},
+        {paz:'Laura Neri',sede:'bergamo',preview:'Ha confermato il promemoria di domani',status:'ok'},
+        {paz:'Elisa Fontana',sede:'sangiovanni',preview:'Ha spostato la visita a mercoledì',status:'ok'}
+      ],
+      acts:[
+        {t:'09:20',x:'Promemoria inviati per domani',s:'tutte le sedi · 38 messaggi'},
+        {t:'09:32',x:'Richiesta sulla rinoplastica passata al chirurgo',s:'Roma Fleming'},
+        {t:'09:41',x:'Appuntamento confermato dal paziente',s:'Bergamo'}
+      ],
+      tag:{}
+    };
+  }
+
+  /* ---------- viste ---------- */
+  const tabs=[...document.querySelectorAll('nav.tabs button')];
+  const VIEWS=['paziente','reception','direzione','flusso'];
+  function show(v){
+    if(!VIEWS.includes(v)) v='paziente';
+    view=v;
+    tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.v===v?'true':'false'));
+    VIEWS.forEach(x=>{$('v-'+x).hidden=(x!==v)});
+    const d=document.querySelector('[data-dot="'+v+'"]'); if(d) d.hidden=true;
+    if(v==='reception') guideMark(2);
+    if(v==='direzione') guideMark(4);
+    try{history.replaceState(null,'','#'+v)}catch(e){}
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.v)));
+  function ping(){['reception','direzione'].forEach(v=>{if(v!==view){const d=document.querySelector('[data-dot="'+v+'"]');if(d)d.hidden=false}})}
+
+  /* ---------- reception ---------- */
+  const sel=$('f-sede');
+  sel.innerHTML='<option value="all">Tutte le sedi del pilota</option>'+SEDI.map(s=>'<option value="'+s.k+'">'+esc(s.n)+'</option>').join('');
+  sel.addEventListener('change',()=>{F.sede=sel.value;renderReception()});
+  $('f-days').innerHTML=DAYS.map(d=>'<button data-d="'+d.k+'" aria-pressed="false">'+d.s+'</button>').join('');
+  $('f-days').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;F.day=b.dataset.d;renderReception()});
+
+  const PILL={ai:['AI in corso','p-ai'],ok:['Prenotato','p-ok'],crit:['Serve medico','p-crit'],chir:['Visita chirurgo','p-warn'],warn:['Da approvare','p-warn'],staff:['Presa in carico','p-n'],closed:['Chiusa','p-n']};
+  const inSede=x=>F.sede==='all'||x.sede===F.sede;
+  function kpi(l,n,d){return '<div class="kpi"><div class="l">'+l+'</div><div class="n">'+n+'</div><div class="d">'+d+'</div></div>'}
+  function renderReception(){
+    sel.value=F.sede;
+    [...$('f-days').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.d===F.day?'true':'false'));
+    const week=ST.appts.filter(inSede), ai=week.filter(a=>a.origin==='ai').length, toConf=week.filter(a=>!a.conf).length;
+    const open=ST.convos.filter(c=>inSede(c)&&(c.status==='crit'||c.status==='warn'||c.status==='chir')).length;
+    $('r-kpis').innerHTML=kpi('Appuntamenti in settimana',week.length,'26–31 ottobre')+kpi("Fissati dall'assistente",ai,Math.round(ai/Math.max(1,week.length)*100)+'% del totale')+kpi('Da confermare',toConf,'promemoria già pianificati')+kpi('Conversazioni da gestire',open,'medici, chirurghi, reception');
+    const day=ST.appts.filter(a=>inSede(a)&&a.day===F.day).sort((a,b)=>a.time.localeCompare(b.time));
+    $('ag-title').textContent='Agenda · '+DAY[F.day].l+(F.sede==='all'?' · tutte le sedi':'');
+    $('ag').innerHTML=day.length?day.map(a=>'<div class="ag-row'+(a.isNew?' new':'')+'"><span class="t">'+a.time+'</span><div class="w">'+esc(a.paz)+(a.isNew?'<span class="badge-new">nuovo</span>':'')+'<small>'+esc(a.tr)+(F.sede==='all'?' · '+esc(SEDE[a.sede].n):'')+(a.conf?'':' · da confermare')+'</small></div><span class="src">'+esc(a.src)+'</span></div>').join(''):'<div class="ag-empty">Nessun appuntamento in questo giorno.</div>';
+    document.querySelectorAll('#ag .ag-row').forEach(r=>{if(r.classList.contains('new'))r.classList.add('ai')});
+    const cs=ST.convos.filter(inSede);
+    $('inbox').innerHTML=cs.length?cs.map((c,i)=>{const p=PILL[c.status];const ini=c.paz.split(' ').map(w=>w[0]).join('').slice(0,2);
+      const btn=(c.status==='crit'||c.status==='warn'||c.status==='chir')?'<button class="btn-s" data-take="'+esc(c.paz)+'">Prendi in carico</button>':'';
+      return '<div class="conv"><div class="av">'+ini+'</div><div style="min-width:0"><div class="nm">'+esc(c.paz)+' <span class="sd">· '+esc(SEDE[c.sede].n)+'</span></div><div class="pv">'+esc(c.preview)+'</div></div><div class="act"><span class="pill '+p[1]+'">'+p[0]+'</span>'+btn+'</div></div>'}).join(''):'<div class="ag-empty">Nessuna conversazione per questa sede.</div>';
+    $('acts').innerHTML=ST.acts.slice().reverse().slice(0,7).map(a=>'<li><span class="tm">'+a.t+'</span><span>'+esc(a.x)+'<small>'+esc(a.s)+'</small></span></li>').join('');
+  }
+  $('inbox').addEventListener('click',e=>{const b=e.target.closest('[data-take]');if(!b)return;const c=ST.convos.find(x=>x.paz===b.dataset.take);if(!c)return;
+    c.status='staff';ST.acts.push({t:nowT(),x:'Conversazione presa in carico dalla reception',s:c.paz+' · '+SEDE[c.sede].n});if(c.paz==='Sara Lombardi')guideMark(3);renderAll()});
+  function nowT(){const d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')}
+
+  /* ---------- direzione ---------- */
+  function renderDirezione(){
+    const all=ST.appts, ai=all.filter(a=>a.origin==='ai').length, web=all.filter(a=>a.src==='AI · dal sito').length+21;
+    const open=ST.convos.filter(c=>c.status==='crit'||c.status==='warn'||c.status==='chir').length;
+    $('d-kpis').innerHTML=kpi('Appuntamenti in settimana',all.length,'7 sedi del pilota')+kpi("Fissati dall'assistente",ai,Math.round(ai/all.length*100)+'% del totale')+kpi('Richieste dal sito convertite',web,'ricontattate su WhatsApp')+kpi('Casi aperti allo staff',open,'da prendere in carico');
+    $('d-table').innerHTML=SEDI.map(s=>{const a=all.filter(x=>x.sede===s.k),n=a.filter(x=>x.origin==='ai').length,o=ST.convos.filter(c=>c.sede===s.k&&(c.status==='crit'||c.status==='warn'||c.status==='chir')).length;
+      return '<tr><td>'+esc(s.n)+'</td><td class="num">'+a.length+'</td><td class="num">'+n+'</td><td class="num">'+Math.round(n/Math.max(1,a.length)*100)+'%</td><td class="num">'+o+'</td><td>'+(o?'<span class="pill p-warn">Caso da gestire</span>':'<span class="pill p-ok">In linea</span>')+'</td></tr>'}).join('');
+    const max=Math.max(...SEDI.map(s=>all.filter(x=>x.sede===s.k).length));
+    $('d-bars').innerHTML=SEDI.map(s=>{const a=all.filter(x=>x.sede===s.k),n=a.filter(x=>x.origin==='ai').length;
+      return '<div class="sb"><span>'+esc(s.n.replace('Roma ','Roma ').replace('Milano ','Milano '))+'</span><span class="track"><i style="width:'+(n/max*100)+'%"></i><u style="width:'+((a.length-n)/max*100)+'%"></u></span><span class="v">'+a.length+'</span></div>'}).join('');
+  }
+  function renderAll(){renderReception();renderDirezione()}
+
+  /* ---------- conversazioni ---------- */
+  const S={
+    book:[
+      {in:'Ciao, ho visto la promo sul Botox. È ancora valida? Sono di Roma',at:'21:52'},
+      {log:['intento','prenotazione · promo Botox']},
+      {log:['promo','cerca_promo("botox")','promo attiva · condizioni decise dalla direzione']},
+      {log:['sedi','sedi_vicine("Roma")','più sedi in città → chiede la zona']},
+      {out:"Ciao! Sono l'assistente virtuale di Clinic Medical Beauty. Sì, la promo sul Botox è attiva: zone e prezzo promozionale te li conferma il medico durante la valutazione, che è inclusa.\nIn che zona di Roma ti è più comodo?",at:'21:52'},
+      {qr:[{l:'Prati',set:{sede:'prati'}},{l:'Eur',set:{sede:'eur'}},{l:'San Giovanni',set:{sede:'sangiovanni'}}],at:'21:53'},
+      {log:['agenda','cerca_slot({sedeN}, 27–29 ottobre)','3 slot liberi con il medico']},
+      {out:'A {sedeN}, {sedeA}, ho martedì 27 alle 18:00, mercoledì 28 alle 12:00 o giovedì 29 alle 17:00. Quale preferisci?',at:'21:53'},
+      {qr:[{l:'Martedì 18:00',set:{day:'27',time:'18:00'}},{l:'Mercoledì 12:00',set:{day:'28',time:'12:00'}},{l:'Giovedì 17:00',set:{day:'29',time:'17:00'}}],at:'21:54'},
+      {out:'Perfetto! Mi lasci nome e cognome per la prenotazione?',at:'21:54'},
+      {in:'Giulia Bianchi',at:'21:54'},
+      {book:{paz:'Giulia Bianchi',tr:'Botox · promo',src:'AI · WhatsApp'},g:1},
+      {log:['scheduler','promemoria il giorno prima alle 18:00','template: promemoria_24h']},
+      {out:'Fatto, Giulia ✅\n{dayL} alle {time}, Clinic Medical Beauty {sedeN}, {sedeA}. Ti scrivo il giorno prima per la conferma.',at:'21:54'}
+    ],
+    lead:[
+      {day:'oggi'},{set:{sede:'pv'}},
+      {log:['sito','modulo «Richiedi un appuntamento»','Marco R. · Milano · «info rinofiller»']},
+      {convo:{paz:'Marco Rinaldi',preview:'Richiesta dal sito: informazioni sul rinofiller',status:'ai'}},
+      {log:['scheduler','primo contatto entro 2 minuti','template: richiesta_dal_sito']},
+      {out:"Ciao Marco, sono l'assistente virtuale di Clinic Medical Beauty. Abbiamo ricevuto dal sito la tua richiesta sul rinofiller: vuoi che ti fissi una visita in una delle nostre sedi di Milano?",tpl:'MESSAGGIO AUTOMATICO',at:'22:11'},
+      {in:'Sì grazie. Quanto costa? Lavoro in zona Porta Venezia',at:'22:14'},
+      {log:['regola','prezzo = definito dal medico in visita','nessuna cifra inventata']},
+      {log:['agenda','cerca_slot(Milano Porta Venezia, visita)','2 slot liberi']},
+      {out:'Il costo lo definisce il medico in visita, in base a cosa vuoi correggere, e ti spiega anche le promo attive. A Milano Porta Venezia, viale Luigi Majno 35, ho giovedì 29 alle 13:00 o sabato 31 alle 10:00.',at:'22:14'},
+      {qr:[{l:'Giovedì 13:00',set:{day:'29',time:'13:00'}},{l:'Sabato 10:00',set:{day:'31',time:'10:00'}}],at:'22:15'},
+      {book:{paz:'Marco Rinaldi',tr:'Visita rinofiller',src:'AI · dal sito'}},
+      {log:['crm','richiesta dal sito → appuntamento','in 4 minuti, alle 22:15']},
+      {out:'Fatto ✅ {dayL} alle {time} in viale Luigi Majno 35. Ti mando un promemoria il giorno prima.',at:'22:15'}
+    ],
+    follow:[
+      {day:'venerdì 23 ottobre'},{set:{sede:'sempione'}},
+      {log:['scheduler','follow-up 24 ore dopo filler labbra','template: followup_trattamento']},
+      {convo:{paz:'Sara Lombardi',preview:'Follow-up dopo filler labbra',status:'ai'}},
+      {out:'Ciao Sara, come ti senti dopo il filler labbra di ieri a Milano Sempione?',tpl:'MESSAGGIO AUTOMATICO',at:'11:00'},
+      {in:"Bene, sono un po' gonfie e c'è un piccolo livido. È normale?",at:'11:20'},
+      {log:['analisi','sintomo dopo il trattamento','indicazioni approvate + contatto con il medico']},
+      {out:"Grazie per avermelo detto. Le indicazioni che il medico lascia dopo il filler: niente sport intenso, sauna e alcol per 48 ore, impacchi freddi a intervalli.\n\nVuoi che ti faccia richiamare oggi dal medico che ti ha trattata?",at:'11:20'},
+      {qr:[
+        {l:'Sì, richiamatemi',then:[
+          {log:['staff','passa_a_staff(priorità alta)','medico di Milano Sempione · riassunto allegato']},
+          {handoff:{paz:'Sara Lombardi',preview:'Gonfiore e livido dopo filler labbra, chiede il medico'}},
+          {out:"Ho avvisato il medico, ti richiama entro un'ora. Se il dolore aumenta o la pelle cambia colore, chiama subito la sede.",at:'11:21'}]},
+        {l:'Va bene così',then:[
+          {convo:{paz:'Sara Lombardi',preview:'Follow-up filler: tutto bene',status:'closed'}},
+          {log:['scheduler','controllo a 14 giorni','template: followup_14g']},
+          {out:'Perfetto. Ti riscrivo tra due settimane per sapere come sta andando.',at:'11:21'}]}
+      ],at:'11:21'}
+    ],
+    noshow:[
+      {day:'oggi'},{set:{sede:'eur'}},
+      {log:['agenda','appuntamento delle 17:00 senza check-in','Roma Eur Europa · paziente non presentato']},
+      {log:['scheduler','recupero +30 minuti','template: recupero_appuntamento']},
+      {out:'Ciao Luca, oggi alle 17:00 ti aspettavamo a Roma Eur per la carbossiterapia. Tutto bene? Se vuoi la spostiamo.',tpl:'MESSAGGIO AUTOMATICO',at:'17:30'},
+      {in:'Scusate, imprevisto al lavoro. Lunedì sera si può?',at:'17:48'},
+      {log:['agenda','cerca_slot(Roma Eur Europa, lunedì sera)','18:00 · 19:00 liberi']},
+      {out:'Nessun problema! Lunedì 26 ottobre ho le 18:00 o le 19:00.',at:'17:48'},
+      {qr:[{l:'18:00',set:{day:'26',time:'18:00'}},{l:'19:00',set:{day:'26',time:'19:00'}}],at:'17:49'},
+      {book:{paz:'Luca Ferri',tr:'Carbossiterapia',src:'AI · recupero'}},
+      {out:'Fatto ✅ Lunedì 26 ottobre alle {time}. Ti ricordo tutto domenica sera.',at:'17:49'}
+    ]
+  };
+  const FIRST={book:0,lead:5,follow:4,noshow:4};
+
+  const chat=$('chat'),log=$('log'),wast=$('wast'),tk=$('ticket'),hint=$('hint');
+  let cur='book',run=null;
+  function vars(v){const s=v.sede&&SEDE[v.sede];return Object.assign({},v,s?{sedeN:s.n,sedeA:s.a}:{},v.day?{dayL:DAY[v.day].l.replace(/^./,c=>c.toUpperCase())}:{})}
+  function T(t,v){return t.replace(/\{(\w+)\}/g,(m,k)=>{const x=vars(v)[k];return x==null?m:x})}
+  function bubble(it,v){const m=document.createElement('div');m.className='msg '+(it.in!=null?'out':'in');
+    m.innerHTML=(it.tpl?'<span class="tpl">'+it.tpl+'</span>':'')+esc(T(it.in!=null?it.in:it.out,v))+'<time>'+it.at+'</time>';chat.appendChild(m);chat.scrollTop=chat.scrollHeight}
+  function addLog(a,v){if(log.querySelector('.empty'))log.innerHTML='';const li=document.createElement('li');
+    li.innerHTML='<span class="k">'+esc(a[0])+'</span><span class="v">'+esc(T(a[1],v))+(a[2]?'<small>'+esc(T(a[2],v))+'</small>':'')+'</span>';log.appendChild(li)}
+  function emptyLog(){log.innerHTML='<li class="empty">Avvia la conversazione per vedere le azioni del sistema.</li>'}
+  function stop(){if(run){clearTimeout(run.timer)}run=null;hint.textContent='';tk.classList.remove('on');wast.textContent='Account business'}
+  function preview(){stop();chat.innerHTML='';emptyLog();const seq=S[cur];const i=FIRST[cur];
+    for(let k=0;k<seq.length;k++){if(seq[k].day&&k<i){const d=document.createElement('div');d.className='day';d.textContent=seq[k].day;chat.appendChild(d)} if(seq[k].in!=null||seq[k].out!=null){bubble(seq[k],{});break}}}
+  function upsertConvo(c){const x=ST.convos.find(y=>y.paz===c.paz);if(x){Object.assign(x,c)}else{ST.convos.unshift(c)}}
+  function start(){stop();chat.innerHTML='';emptyLog();
+    // rimuove gli effetti di una prova precedente dello stesso scenario
+    const tag=cur; ST.appts=ST.appts.filter(a=>a.tag!==tag);
+    run={seq:S[cur].slice(),i:0,v:{},timer:null};next()}
+  function after(ms){run.timer=setTimeout(next,D(ms))}
+  function next(){
+    if(!run)return; if(run.i>=run.seq.length){wast.textContent='online';return}
+    const it=run.seq[run.i++], v=run.v;
+    chat.querySelectorAll('.typing').forEach(n=>n.remove());
+    if(it.set){Object.assign(v,it.set);return after(10)}
+    if(it.day){const d=document.createElement('div');d.className='day';d.textContent=it.day;chat.appendChild(d);return after(250)}
+    if(it.log){addLog(it.log,v);return after(500)}
+    if(it.convo){upsertConvo(Object.assign({sede:v.sede},it.convo));renderAll();ping();return after(150)}
+    if(it.handoff){upsertConvo({paz:it.handoff.paz,sede:v.sede,preview:it.handoff.preview,status:'crit'});
+      ST.acts.push({t:nowT(),x:'Caso passato al medico',s:it.handoff.paz+' · '+SEDE[v.sede].n});renderAll();ping();return after(300)}
+    if(it.book){const b=it.book;ST.appts.forEach(a=>a.isNew=false);
+      ST.appts.push({id:Date.now(),tag:cur,sede:v.sede,day:v.day,time:v.time,paz:b.paz,tr:b.tr,origin:'ai',src:b.src,conf:true,isNew:true});
+      upsertConvo({paz:b.paz,sede:v.sede,preview:'Prenotato '+b.tr+', '+DAY[v.day].s+' alle '+v.time,status:'ok'});
+      ST.acts.push({t:nowT(),x:'Appuntamento fissato · '+b.tr,s:b.paz+' · '+SEDE[v.sede].n+' · '+DAY[v.day].s+' '+v.time});
+      F.sede=v.sede;F.day=v.day;
+      addLog(['agenda','prenota('+SEDE[v.sede].n+', '+DAY[v.day].s+' '+v.time+')','appuntamento visibile nella reception di sede'],v);
+      $('tk-l').textContent=SEDE[v.sede].n+' · '+DAY[v.day].s;$('tk-t').textContent=v.time;$('tk-w').textContent=b.tr;tk.classList.add('on');
+      if(it.g)guideMark(it.g);
+      renderAll();ping();return after(400)}
+    if(it.qr){const q=document.createElement('div');q.className='qr';
+      it.qr.forEach(o=>{const b=document.createElement('button');b.type='button';b.textContent=o.l;b.addEventListener('click',()=>{
+        q.remove();hint.textContent='';if(o.set)Object.assign(v,o.set);bubble({in:o.l,at:it.at},v);
+        if(o.then)run.seq.splice(run.i,0,...o.then);after(600)});q.appendChild(b)});
+      chat.appendChild(q);chat.scrollTop=chat.scrollHeight;hint.textContent='Tocca una risposta nel telefono';return}
+    bubble(it,v);
+    const nx=run.seq[run.i];
+    if(nx&&nx.out!=null){run.timer=setTimeout(()=>{wast.textContent='sta scrivendo…';const t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';chat.appendChild(t);chat.scrollTop=chat.scrollHeight;
+      run.timer=setTimeout(()=>{wast.textContent='online';next()},D(1000))},D(450))}
+    else after(it.in!=null?650:1100);
+  }
+  function pick(s){cur=s;document.querySelectorAll('#scen .chip-btn').forEach(x=>x.setAttribute('aria-pressed',x.dataset.s===s?'true':'false'));preview()}
+  document.querySelectorAll('#scen .chip-btn').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.s)));
+  $('play').addEventListener('click',start);
+  $('again').addEventListener('click',preview);
+
+  /* ---------- guida e reset ---------- */
+  function guideMark(n){guideDone[n]=true;document.querySelectorAll('.gstep').forEach(g=>g.classList.toggle('done',!!guideDone[g.dataset.g]))}
+  $('btn-guide').addEventListener('click',()=>{$('guide').hidden=!$('guide').hidden;if(!$('guide').hidden)$('guide').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});
+  $('guide-close').addEventListener('click',()=>{$('guide').hidden=true});
+  document.querySelector('.guide-steps').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const g=b.dataset.go;
+    if(g==='1'){show('paziente');pick('book');start();$('v-paziente').scrollIntoView({behavior:reduce?'auto':'smooth'})}
+    if(g==='2'){show('reception')}
+    if(g==='3'){show('paziente');pick('follow');start();$('v-paziente').scrollIntoView({behavior:reduce?'auto':'smooth'})}
+    if(g==='4'){show('direzione')}});
+  function reset(){stop();ST=seed();F={sede:'all',day:'26'};guideDone={};guideMark(0);document.querySelectorAll('[data-dot]').forEach(d=>d.hidden=true);pick('book');renderAll()}
+  $('btn-reset').addEventListener('click',reset);
+
+  reset();
+  show((location.hash||'').slice(1));
+})();
+</script>
+
+</html>
